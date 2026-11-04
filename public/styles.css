@@ -1,0 +1,221 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f3;
+    color: #26352d;
+}
+
+button {
+    border: none;
+    border-radius: 6px;
+    padding: 11px 16px;
+    background: #205944;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #153e30;
+}
+
+input, select {
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 0;
+}
+
+header {
+    background: #173f35;
+    color: white;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 23px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+.login-wrap {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: white;
+    padding: 35px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px #00000015;
+}
+
+.login-card h1 {
+    color: #205944;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+form input, form select {
+    flex: 1 1 160px;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#loginForm input {
+    width: 100%;
+}
+
+.credentials {
+    background: #edf5ef;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 7px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cards article {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #205944;
+}
+
+.cards h3 {
+    font-size: 14px;
+}
+
+.cards strong {
+    font-size: 28px;
+    color: #205944;
+}
+
+.panel {
+    background: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #00000008;
+}
+
+.panel h2 {
+    color: #205944;
+}
+
+.filters, .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 13px;
+}
+
+th {
+    background: #edf5ef;
+}
+
+.pagination {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.credentials p {
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+#notice {
+    padding: 12px;
+    background: #e3f3e8;
+    color: #205944;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+#notice.error {
+    background: #ffe8e5;
+    color: #a12b22;
+}
+
+#loginMessage {
+    color: #b52c25;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    .panel {
+        padding: 14px;
+    }
+}
