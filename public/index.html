@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Almoxarifado Simples</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <main id="loginView" class="login-wrap">
+
+        <section class="login-card">
+
+            <h1>Almoxarifado</h1>
+
+            <p>Controle de materiais</p>
+
+            <form id="loginForm">
+
+                <label>
+                    E-mail
+                    <input
+                        name="email"
+                        type="email"
+                        required
+                        value="admin@almox.local"
+                    >
+                </label>
+
+                <label>
+                    Senha
+                    <input
+                        name="password"
+                        type="password"
+                        required
+                        value="admin123"
+                    >
+                </label>
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <p id="loginMessage"></p>
+
+            <div class="credentials">
+                <p>Administrador:</p>
+                admin@almox.local / admin123
+
+                <p>Operador:</p>
+                operador@almox.local / operador123
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- SISTEMA -->
+    <div id="appView" hidden>
+
+        <header>
+
+            <h1>Sistema de Almoxarifado</h1>
+
+            <div>
+                <span id="currentUser"></span>
+                -
+                <span id="currentRole"></span>
+
+                <button id="logoutButton">
+                    Sair
+                </button>
+            </div>
+
+        </header>
+
+
+        <main class="container">
+
+            <div id="notice" hidden></div>
+
+
+            <!-- RESUMO -->
+            <section class="cards">
+
+                <article>
+                    <h3>Produtos cadastrados</h3>
+                    <strong id="totalProducts">0</strong>
+                </article>
+
+                <article>
+                    <h3>Unidades em estoque</h3>
+                    <strong id="totalUnits">0</strong>
+                </article>
+
+                <article>
+                    <h3>Movimentações</h3>
+                    <strong id="totalMovements">0</strong>
+                </article>
+
+            </section>
+
+
+            <!-- PRODUTOS -->
+            <section class="panel">
+
+                <h2>Cadastro de produtos</h2>
+
+                <form id="productForm">
+
+                    <input
+                        name="name"
+                        placeholder="Nome do produto"
+                        maxlength="80"
+                        required
+                    >
+
+                    <input
+                        name="description"
+                        placeholder="Descrição"
+                        maxlength="180"
+                    >
+
+                    <button type="submit">
+                        Cadastrar produto
+                    </button>
+
+                </form>
+
+                <h3>Consultar produtos</h3>
+
+                <div class="filters">
+
+                    <input
+                        id="searchName"
+                        placeholder="Buscar por nome"
+                    >
+
+                    <input
+                        id="filterFrom"
+                        type="date"
+                    >
+
+                    <input
+                        id="filterTo"
+                        type="date"
+                    >
+
+                    <button id="filterButton" type="button">
+                        Filtrar
+                    </button>
+
+                </div>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                                <th>Quantidade</th>
+                                <th>Cadastro</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="productsBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="pagination">
+
+                    <span id="pageInfo">Página 1</span>
+
+                    <button id="previousPage">
+                        Anterior
+                    </button>
+
+                    <button id="nextPage">
+                        Próxima
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- MOVIMENTAÇÕES -->
+            <section class="panel">
+
+                <h2>Movimentações de estoque</h2>
+
+                <form id="movementForm">
+
+                    <select
+                        name="productId"
+                        id="movementProduct"
+                        required
+                    >
+                        <option value="">
+                            Selecione um produto
+                        </option>
+                    </select>
+
+                    <select name="type">
+
+                        <option value="ENTRADA">
+                            Entrada
+                        </option>
+
+                        <option value="SAIDA">
+                            Saída
+                        </option>
+
+                    </select>
+
+                    <input
+                        name="quantity"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="Quantidade"
+                        required
+                    >
+
+                    <button type="submit">
+                        Registrar movimentação
+                    </button>
+
+                </form>
+
+
+                <h3>Histórico de movimentações</h3>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Data e hora</th>
+                                <th>Produto</th>
+                                <th>Tipo</th>
+                                <th>Quantidade</th>
+                                <th>Saldo</th>
+                                <th>Responsável</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="movementsBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- USUÁRIOS -->
+            <section
+                id="usuarios"
+                class="panel admin-only"
+                hidden
+            >
+
+                <h2>Gerenciamento de usuários</h2>
+
+                <form id="userForm">
+
+                    <input
+                        name="name"
+                        placeholder="Nome"
+                        required
+                    >
+
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="E-mail"
+                        required
+                    >
+
+                    <input
+                        name="password"
+                        type="password"
+                        placeholder="Senha"
+                        minlength="6"
+                        required
+                    >
+
+                    <select name="role">
+
+                        <option value="OPERADOR">
+                            Operador
+                        </option>
+
+                        <option value="ADMINISTRADOR">
+                            Administrador
+                        </option>
+
+                    </select>
+
+                    <button type="submit">
+                        Criar usuário
+                    </button>
+
+                </form>
+
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Perfil</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="usersBody">
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="app.js" defer></script>
+
+</body>
+
+</html>

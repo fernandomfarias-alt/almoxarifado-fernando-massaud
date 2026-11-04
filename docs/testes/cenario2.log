@@ -1,0 +1,8 @@
+SISTEMA DE ALMOXARIFADO
+Data: 04/11/2026, 09:19:04
+Pré-condição: estoque inicial de 10 unidades.
+Entrada: retirada de 10 unidades.
+Esperado: permitir a operação.
+Obtido: saída registrada.
+Saldo final: 0 unidades.
+Conclusão: APROVADO.
